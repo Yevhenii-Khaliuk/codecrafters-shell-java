@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class HandlerFactory {
     private static final Handler DEFAULT_COMMAND_NOT_FOUND_HANDLER =
-        arguments -> "%s: command not found%n".formatted(String.join(" ", arguments));
+        arguments -> "%s: command not found".formatted(String.join(" ", arguments));
 
     private final Map<Command, Handler> commandHandlers = new EnumMap<>(Command.class);
 
