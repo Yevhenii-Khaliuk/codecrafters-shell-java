@@ -7,8 +7,7 @@ import java.util.EnumMap;
 import java.util.Map;
 
 public class HandlerFactory {
-    private static final Handler DEFAULT_COMMAND_NOT_FOUND_HANDLER =
-        arguments -> "%s: command not found".formatted(String.join(" ", arguments));
+    private static final Handler DEFAULT_HANDLER = new DefaultHandler();
 
     private final Map<Command, Handler> commandHandlers = new EnumMap<>(Command.class);
 
@@ -23,7 +22,7 @@ public class HandlerFactory {
         try {
             command = Command.valueOf(arguments[0].toUpperCase());
         } catch (IllegalArgumentException e) {
-            return DEFAULT_COMMAND_NOT_FOUND_HANDLER;
+            return DEFAULT_HANDLER;
         }
 
         return commandHandlers.get(command);
@@ -41,12 +40,22 @@ public class HandlerFactory {
     enum Command {
         ECHO(Echo.class),
         EXIT(Exit.class),
-        TYPE(Type.class),;
+        TYPE(Type.class),
+        ;
 
         private final Class<? extends Handler> handler;
 
         Command(Class<? extends Handler> handler) {
             this.handler = handler;
+        }
+
+        static boolean contains(String commandName) {
+            for (Command command : values()) {
+                if (command.name().equals(commandName)) {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

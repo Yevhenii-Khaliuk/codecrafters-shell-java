@@ -17,12 +17,7 @@ public class Type implements Handler {
     }
 
     private boolean isBuiltin(String command) {
-        try {
-            HandlerFactory.Command.valueOf(command.toUpperCase());
-            return true;
-        } catch (IllegalArgumentException e) {
-            return false;
-        }
+        return HandlerFactory.Command.contains(command.toUpperCase());
     }
 
     private String executablePath(String command) {
