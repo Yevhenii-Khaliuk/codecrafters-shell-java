@@ -8,7 +8,13 @@ import static dev.khaliuk.ccshell.Constants.USER_WORKING_DIRECTORY_PROPERTY;
 public class Cd implements Handler {
     @Override
     public String handle(String[] arguments) {
-        if (arguments[1].startsWith("/")) {
+        if (arguments[1].equals("~")) {
+            var directory = new File(System.getenv("HOME"));
+
+            if (directory.exists()) {
+                return updateWorkingDirectory(directory);
+            }
+        } else if (arguments[1].startsWith("/")) {
             var directory = new File(arguments[1]).getAbsoluteFile();
 
             if (directory.exists()) {
