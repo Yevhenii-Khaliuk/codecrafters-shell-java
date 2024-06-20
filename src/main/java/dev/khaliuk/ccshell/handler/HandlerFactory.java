@@ -38,9 +38,10 @@ public class HandlerFactory {
         }
     }
 
-    private enum Command {
+    enum Command {
         ECHO(Echo.class),
-        EXIT(Exit.class);
+        EXIT(Exit.class),
+        TYPE(Type.class),;
 
         private final Class<? extends Handler> handler;
 
