@@ -20,7 +20,7 @@ public class Main {
             var handler = handlerFactory.getHandler(arguments);
             var result = handler.handle(arguments);
 
-            System.out.printf("%s%n", result);
+            System.out.print(result);
         }
     }
 }

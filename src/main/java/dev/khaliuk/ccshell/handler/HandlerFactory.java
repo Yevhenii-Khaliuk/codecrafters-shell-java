@@ -38,6 +38,7 @@ public class HandlerFactory {
     }
 
     enum Command {
+        CD(Cd.class),
         ECHO(Echo.class),
         EXIT(Exit.class),
         PWD(Pwd.class),

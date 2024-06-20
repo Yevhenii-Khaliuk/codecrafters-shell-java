@@ -11,9 +11,10 @@ public class DefaultHandler implements Handler {
                 .start()
                 .inputReader()
                 .lines()
-                .collect(Collectors.joining("%n"));
+                .collect(Collectors.joining("\n"))
+                + "\n";
         } catch (IOException e) {
-            return "%s: command not found".formatted(String.join(" ", arguments));
+            return "%s: command not found%n".formatted(String.join(" ", arguments));
         }
     }
 }

@@ -10,7 +10,7 @@ public class Type implements Handler {
     @Override
     public String handle(String[] arguments) {
         if (isBuiltin(arguments[1])) {
-            return "%s is a shell builtin".formatted(arguments[1]);
+            return "%s is a shell builtin%n".formatted(arguments[1]);
         }
 
         return executablePath(arguments[1]);
@@ -31,13 +31,13 @@ public class Type implements Handler {
                     .map(Path::toString);
 
                 if (commandFound.isPresent()) {
-                    return "%s is %s".formatted(command, commandFound.get());
+                    return "%s is %s%n".formatted(command, commandFound.get());
                 }
             } catch (IOException e) {
                 // do nothing
             }
         }
 
-        return "%s: not found".formatted(command);
+        return "%s: not found%n".formatted(command);
     }
 }

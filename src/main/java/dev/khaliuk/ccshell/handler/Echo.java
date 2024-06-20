@@ -7,6 +7,7 @@ public class Echo implements Handler {
     @Override
     public String handle(String[] arguments) {
         return Arrays.stream(arguments, 1, arguments.length)
-            .collect(Collectors.joining(" "));
+            .collect(Collectors.joining(" "))
+            + "\n";
     }
 }
