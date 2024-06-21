@@ -17,14 +17,13 @@ public class HandlerFactory {
     }
 
     public Handler getHandler(String[] arguments) {
-        Command command;
+        var commandName = arguments[0].toUpperCase();
 
-        try {
-            command = Command.valueOf(arguments[0].toUpperCase());
-        } catch (IllegalArgumentException e) {
+        if (!Command.contains(commandName)) {
             return DEFAULT_HANDLER;
         }
 
+        var command = Command.valueOf(commandName);
         return commandHandlers.get(command);
     }
 
